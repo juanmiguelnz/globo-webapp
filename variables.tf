@@ -37,14 +37,14 @@ variable "api_key" {
   description = "(Required) API key for web app to talk to SaaS platform."
 }
 
-variable "public_subnets" {
-  type        = list(string)
-  description = "(Required) List of subnet IDs for EC2 instance deployments."
+variable "organization" {
+  type        = string
+  description = "Name of Terraform Cloud Organization"
 }
 
-variable "vpc_id" {
+variable "workspace" {
   type        = string
-  description = "(Required) VPC ID of VPC for application deployment."
+  description = "Name of Terraform Cloud Workspace"
 }
 
 
