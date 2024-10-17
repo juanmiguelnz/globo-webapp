@@ -35,6 +35,7 @@ resource "aws_instance" "main" {
     aws_security_group.webapp_ssh_inbound_sg.id,
     aws_security_group.webapp_outbound_sg.id,
   ]
+  associate_public_ip_address = true
 
   key_name = module.ssh_keys.key_pair_name
 
