@@ -46,7 +46,7 @@ resource "aws_instance" "main" {
   # configuration manager
   user_data_replace_on_change = true
   user_data = templatefile("./templates/userdata.sh", {
-    playbook_repository = "https://github.com/ned1313/ansible-playbook-nginx.git"
+    playbook_repository = var.playbook_repository
   })
 
 }
