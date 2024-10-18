@@ -43,27 +43,11 @@ resource "aws_instance" "main" {
     "Name" = "${local.name_prefix}-webapp-${count.index}"
   })
 
-  # Provisioner Stuff
-  connection {
-    type        = "ssh"
-    user        = "ec2-user"
-    port        = "22"
-    host        = self.public_ip
-    private_key = module.ssh_keys.private_key_openssh
-  }
-
-  provisioner "file" {
-    source      = "./templates/userdata.sh"
-    destination = "/home/ec2-user/userdata.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /home/ec2-user/userdata.sh",
-      "sh /home/ec2-user/userdata.sh",
-    ]
-    on_failure = continue
-  }
+  # configuration manager
+  user_data_replace_on_change = true
+  user_data = templatefile("./templates/userdata.sh", {
+    playbook_repository = "https://github.com/ned1313/ansible-playbook-nginx.git"
+  })
 
 }
 
