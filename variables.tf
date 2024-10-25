@@ -32,9 +32,9 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
-variable "api_key" {
+variable "api_key_secret_id" {
   type        = string
-  description = "(Required) API key for web app to talk to SaaS platform."
+  description = "(Required) Secret ID for the API key for web app to talk to SaaS platform."
 }
 
 variable "playbook_repository" {
@@ -50,6 +50,11 @@ variable "organization" {
 variable "workspace" {
   type        = string
   description = "Name of Terraform Cloud Workspace"
+}
+
+variable "ec2_role_name" {
+  type        = string
+  description = "(Required) Name of the EC2 role"
 }
 
 
